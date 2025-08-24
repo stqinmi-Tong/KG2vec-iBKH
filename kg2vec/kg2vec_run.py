@@ -68,7 +68,6 @@ def load_data(args):
 
 
 def save_data(args, train_data, paths):
-    """统一保存，减少磁盘IO"""
     save_dict = {
         "train_data": train_data,
         "paths": paths
@@ -88,7 +87,7 @@ def load_saved_data(args):
     return train_data, paths
 
 def path_rel2ent(path_data, ent_size):
-    """筛选合适长度的路径，并将关系编码转变为与实体编码一致"""
+    """将关系编码转变为与实体编码一致"""
     print('data processing')
 
     path_reltoent = []
@@ -114,14 +113,7 @@ def datatoword(data, dictionary, ent_size):
 
     return words.tolist()
 def word_freq(vocab):
-    """优化后的词频计算函数
-    Args:
-        vocab: 词汇表字典，键为单词，值为词频计数
-
-    Returns:
-        word_frequency: 转换后的词频(3/4次方)
-        words_counts: 原始词频计数数组
-    """
+    
     # 直接从字典值创建numpy数组，避免列表推导式
     words_counts = np.fromiter(vocab.values(), dtype=np.float32, count=len(vocab))
 
@@ -161,7 +153,6 @@ def log_args(args):
 def build_corpus(words, ent_id, rel_id):
     """语料库构建函数"""
     # 1. 构建初始词汇表
-    # 使用生成器表达式替代双重循环
     # 相当于将每条单个的路径都连起来得到整个path数据集的词库，里面是每个词的原始id。相当于text
     corpus_word = [str(word) for path in words for word in path]
     # 使用Counter直接获取词频统计
@@ -175,9 +166,6 @@ def build_corpus(words, ent_id, rel_id):
 
     for r in rel_id:
         vocab.setdefault(str(r + len(ent_id)), 1)
-    # with open(os.path.join("../data/iBKH/", "corpus_word.txt"), "w") as f:
-    #     json.dump(corpus_word, f, ensure_ascii=False)
-
 
     # 计算UNK词频
     unk_count = sum(vocab_counter.values()) - sum(vocab.values())
@@ -319,7 +307,6 @@ def main():
     log_args(args)
 
     # ==== 7. 训练模型 ====
-    # 调用多卡版本的训练函数
     embedding_weights = kg2vec_fast(
         args.data, ent_num, rel_num, args.EMBEDDING_SIZE,
         dataloader, args.walk_num, args.walk_num_edge,
@@ -338,7 +325,5 @@ def main():
 
 if __name__ == "__main__":
 
-    #
-    # mp.set_start_method('spawn', force=True)
-
     main()
+

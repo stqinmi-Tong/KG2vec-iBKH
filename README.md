@@ -2,7 +2,7 @@
 
 1. Download the entities and relations files according to the readme file under the ./data/iBKH/entity and ./data/iBKH/relation.
 
-2. Prepare the triplets files run the following code:
+2. Prepare the triplets files running the following code:
 
    ```markup
    python ./funcs/KG_generation_run.py 
@@ -18,7 +18,7 @@ Train the KG2vec by:
 python ./kg2vec/kg2vec_run.py
 ```
 
-This will generate two output files for each model: “ent_embeddings_kg2vec.pt”, containing the low dimension embeddings of entities in iBKH and “rel_embeddings_kg2vec”, containing the low dimension embeddings of relations in iBKH. These embeddings can be used in downstream BKD tasks.&#x20;
+This will generate two output files for each model: “ent_embeddings_kg2vec.pt”, containing the low-dimensional embeddings of entities in iBKH and “rel_embeddings_kg2vec”, containing the low-dimensional embeddings of relations in iBKH. These embeddings can be used in downstream BKD tasks.&#x20;
 
 ## Conduct biomedical knowledge discovery (BKD)
 
@@ -32,11 +32,11 @@ We conduct biomedical knowledge discovery task using the learned embeddings:
 python ./funcs/link_pred_run.py
 ```
 
-Running the above code will result in an output CSV file within the “output” folder, which stores top-50 ranked repurposable drug candidates for PD based on the TransE model.
+Running the above code will result in an output CSV file within the “output” folder, which stores the top-50 ranked repurposable drug candidates for PD based on the TransE model.
 
 ## Example of our BKD Results:
 
-This table shows the top-3 predict results, which don’t have “treats” and “palliates” relationships with PD in the iBKH but has the highest probability of potentially treating or palliating PD.&#x20;
+This table shows the top-3 predicted results, which don’t have “treats” and “palliates” relationships with PD in the iBKH but has the highest probability of potentially treating or palliating PD.&#x20;
 
 | primary          | name                         | &#x20;         ...  | id      | score          | score_norm  |
 | :--------------- | :--------------------------- | :------------------ | :------ | :------------- | :---------- |

@@ -42,5 +42,5 @@ This table shows the top-3 predict results, which don’t have “treats” and 
 | :--------------- | :--------------------------- | :------------------ | :------ | :------------- | :---------- |
 | cid:cid100003939 | LiOH                         | &#x20;         ...  | 2149717 | -1.9311718e-05 | 1.0         |
 | kegg:d05008      | Metoclopramide hydrochloride | &#x20;         ...  | 2129139 | -2.396078e-05  | 0.9994735   |
-| kegg:d04479      | Hyoscyamine hydrobromide     | &#x20;          ... | 2128747 | -2.5391257e-05 | 0.9993115偶然 |
+| kegg:d04479      | Hyoscyamine hydrobromide     | &#x20;          ... | 2128747 | -2.5391257e-05 | 0.9993115 |
 
